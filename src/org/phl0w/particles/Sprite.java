@@ -18,4 +18,5 @@ public class Sprite {
         g.setColor(col);
         g.fillOval(loc.getX(), loc.getY(), size, size);
     }
+
 }
