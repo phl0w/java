@@ -7,11 +7,12 @@ import org.powerbot.game.api.methods.tab.Inventory;
 public enum Fishing {
 
     CRAYFISH(Constants.CRAYFISH_SPOT, -1, "Cage"),
-    TROUT(Constants.TROUT_SPOT, 314, "Lure");
+    TROUT(Constants.TROUT_SPOT, 314, "Lure"),
+    LOBSTER(Constants.LOBSTER_SPOT, -1, "Cage");
 
-    private int npcId;
-    private int baitId;
-    private String interact;
+    private final int npcId;
+    private final int baitId;
+    private final String interact;
 
     Fishing(final int npcId, final int baitId, final String interact) {
         this.npcId = npcId;

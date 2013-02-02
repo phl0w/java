@@ -21,7 +21,6 @@ public class Antiban extends Node {
         final int t = Random.nextInt(0, 20);
         switch (t) {
             case 0:
-            case 1:
             case 2:
                 Camera.setAngle(Random.nextInt(20, 300));
                 break;
@@ -33,7 +32,6 @@ public class Antiban extends Node {
                 doMouseStuff();
                 break;
             case 7:
-            case 8:
             case 9:
                 final Point p = Mouse.getLocation();
                 Mouse.move(new Point(Random.nextInt(-50, 50) + p.x, Random.nextInt(-50, 50) + p.y));

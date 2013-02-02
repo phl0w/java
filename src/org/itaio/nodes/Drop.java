@@ -8,7 +8,7 @@ import org.powerbot.game.api.wrappers.node.Item;
 
 public class Drop extends Node {
 
-    private int[] dropId;
+    private final int[] dropId;
 
     public Drop(final int... drop) {
         this.dropId = drop;

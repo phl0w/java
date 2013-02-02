@@ -13,10 +13,10 @@ import org.powerbot.game.api.util.SkillData;
 
 import java.awt.*;
 
-@Manifest(authors = {"_phl0w"}, name = "iTAIO", description = "Does anything you want (sort of), just start near it's location.", version = 1.02)
+@Manifest(authors = {"_phl0w"}, name = "iTAIO", description = "Does anything you want (sort of), just start near it's location.", version = 1.03)
 public class iTAIO extends ActiveScript implements PaintListener {
 
-    public static final State task = State.FISH_TROUT_AND_SALMON;
+    public static final State task = State.FISH_LOBSTER;
     private static Tree jobs = null;
 
     public static SkillData sd = null;

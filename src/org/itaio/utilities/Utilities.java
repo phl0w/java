@@ -16,7 +16,7 @@ public class Utilities {
     public static Item[] getItems(final int... id) {
         final ArrayList<Item> array = new ArrayList<Item>();
         for (final Item i : Inventory.getItems()) {
-            for (int i1 : id) {
+            for (final int i1 : id) {
                 if (i.getId() == i1) {
                     array.add(i);
                 }
@@ -34,9 +34,9 @@ public class Utilities {
         return c.activate();
     }
 
-    public static boolean sleepIfMoving() {
+    public static boolean shouldSleep() {
         if (Walking.getDestination() != null) {
-            if (Calculations.distanceTo(Walking.getDestination()) > 5) {
+            if (Calculations.distanceTo(Walking.getDestination()) > 6) {
                 return true;
             }
         }

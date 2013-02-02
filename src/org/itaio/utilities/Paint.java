@@ -16,8 +16,8 @@ public class Paint {
         drawStrings(g);
     }
 
-    private static void drawStrings(Graphics2D g) {
-        int y = 65;
+    private static void drawStrings(final Graphics2D g) {
+        int y = 70;
         final int x = 5;
         final ArrayList<String> strings = new ArrayList<String>();
 
