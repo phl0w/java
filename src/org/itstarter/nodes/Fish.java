@@ -23,7 +23,7 @@ public class Fish extends Node {
 
     @Override
     public boolean activate() {
-        return Players.getLocal().getInteracting() == null && (fish == null ? (fish = NPCs.getNearest(f.getNpcId())) : fish) != null && f.validate() && !Inventory.isFull();
+        return Players.getLocal().getInteracting() == null && (fish == null ? (fish = NPCs.getNearest(f.getNpcId())) : fish) != null && f.validate() && !Inventory.isFull() && Utilities.sleepIfMoving();
     }
 
     @Override
