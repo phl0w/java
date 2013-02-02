@@ -1,8 +1,8 @@
-package org.itstarter.nodes;
+package org.itaio.nodes;
 
-import org.itstarter.utilities.Utilities;
-import org.itstarter.utilities.enums.Fishing;
-import org.itstarter.utilities.interfaces.Condition;
+import org.itaio.utilities.Utilities;
+import org.itaio.utilities.enums.Fishing;
+import org.itaio.utilities.interfaces.Condition;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Walking;
 import org.powerbot.game.api.methods.interactive.NPCs;

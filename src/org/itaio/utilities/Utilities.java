@@ -1,6 +1,6 @@
-package org.itstarter.utilities;
+package org.itaio.utilities;
 
-import org.itstarter.utilities.interfaces.Condition;
+import org.itaio.utilities.interfaces.Condition;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Walking;

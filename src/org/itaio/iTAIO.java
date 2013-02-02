@@ -1,7 +1,7 @@
-package org.itstarter;
+package org.itaio;
 
-import org.itstarter.utilities.Paint;
-import org.itstarter.utilities.enums.State;
+import org.itaio.utilities.Paint;
+import org.itaio.utilities.enums.State;
 import org.powerbot.core.event.listeners.PaintListener;
 import org.powerbot.core.script.ActiveScript;
 import org.powerbot.core.script.job.state.Node;
@@ -14,7 +14,7 @@ import org.powerbot.game.api.util.SkillData;
 import java.awt.*;
 
 @Manifest(authors = {"_phl0w"}, name = "Starter script", description = "start near the lumbridge lodestone", version = 1.01)
-public class iTStarter extends ActiveScript implements PaintListener {
+public class iTAIO extends ActiveScript implements PaintListener {
 
     public static final State task = State.FISH_TROUT_AND_SALMON;
     private static Tree jobs = null;

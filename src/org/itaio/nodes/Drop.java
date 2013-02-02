@@ -1,6 +1,6 @@
-package org.itstarter.nodes;
+package org.itaio.nodes;
 
-import org.itstarter.utilities.Utilities;
+import org.itaio.utilities.Utilities;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.tab.Inventory;

@@ -1,11 +1,11 @@
-package org.itstarter.utilities.enums;
+package org.itaio.utilities.enums;
 
 
-import org.itstarter.nodes.Antiban;
-import org.itstarter.nodes.Drop;
-import org.itstarter.nodes.Fish;
-import org.itstarter.nodes.Mine;
-import org.itstarter.utilities.Constants;
+import org.itaio.nodes.Antiban;
+import org.itaio.nodes.Drop;
+import org.itaio.nodes.Fish;
+import org.itaio.nodes.Mine;
+import org.itaio.utilities.Constants;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.tab.Skills;
 

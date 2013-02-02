@@ -1,6 +1,6 @@
-package org.itstarter.utilities.enums;
+package org.itaio.utilities.enums;
 
-import org.itstarter.utilities.Constants;
+import org.itaio.utilities.Constants;
 import org.powerbot.game.api.methods.tab.Inventory;
 
 

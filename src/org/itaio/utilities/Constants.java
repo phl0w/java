@@ -1,4 +1,4 @@
-package org.itstarter.utilities.interfaces;
+package org.itaio.utilities;
 
 public class Constants {
 
