@@ -2,6 +2,7 @@ package org.itaio.utilities;
 
 import org.itaio.iTAIO;
 import org.powerbot.game.api.Manifest;
+import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.util.SkillData;
 import org.powerbot.game.api.util.Time;
 
@@ -22,11 +23,12 @@ public class Paint {
 
         final SkillData temp = iTAIO.sd;
         strings.add("iTAIO v" + getVersion() + " - by _phl0w");
-        strings.add("Levels gained: " + temp.level(iTAIO.task.getSkill()));
+        strings.add("Fishing level: " + Skills.getLevel(Skills.FISHING) + " (+" + temp.level(iTAIO.task.getSkill()) + ")");
         strings.add("Experience gained: " + temp.experience(iTAIO.task.getSkill()));
         strings.add("Experience/hour: " + temp.experience(SkillData.Rate.HOUR, iTAIO.task.getSkill()));
         strings.add("TTL: " + Time.format(temp.timeToLevel(SkillData.Rate.HOUR, iTAIO.task.getSkill())));
         strings.add("Runtime: " + Time.format((System.currentTimeMillis() - iTAIO.startTime)));
+        strings.add("Mode: " + iTAIO.task.name());
 
         for (final String s : strings) {
             y += g.getFontMetrics().getHeight();
