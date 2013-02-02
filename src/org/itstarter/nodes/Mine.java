@@ -1,6 +1,6 @@
 package org.itstarter.nodes;
 
-import org.itstarter.utilities.interfaces.Constants;
+import org.itstarter.utilities.Constants;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;

@@ -5,7 +5,7 @@ import org.itstarter.nodes.Antiban;
 import org.itstarter.nodes.Drop;
 import org.itstarter.nodes.Fish;
 import org.itstarter.nodes.Mine;
-import org.itstarter.utilities.interfaces.Constants;
+import org.itstarter.utilities.Constants;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.tab.Skills;
 
