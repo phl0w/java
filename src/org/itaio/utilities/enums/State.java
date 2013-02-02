@@ -18,7 +18,9 @@ public enum State {
     MINE(Skills.MINING, new Mine(), new Drop(Constants.COPPER_ORE)),
     FISH_CRAYFISH(Skills.FISHING, new Fish(Fishing.CRAYFISH), new Drop(Constants.CRAYFISH)),
     FISH_TROUT_AND_SALMON(Skills.FISHING, new Fish(Fishing.TROUT), new Drop(Constants.TROUT, Constants.SALMON)),
-    FISH_LOBSTER(Skills.FISHING, new Fish(Fishing.LOBSTER), new Walker(Constants.PATH_TO_STILES, Constants.LOBSTER_CONDITION_1), new Walker(Constants.PATH_TO_LOBSTERS, Constants.LOBSTER_CONDITION_2), new Stiles());
+    FISH_LOBSTER(Skills.FISHING, new Fish(Fishing.LOBSTER), new Walker(Constants.PATH_TO_STILES,
+            Constants.LOBSTER_CONDITION_1), new Walker(Constants.PATH_TO_LOBSTERS, Constants.LOBSTER_CONDITION_2),
+            new Stiles());
 
     private final Node[] nodes;
     private final int skill;

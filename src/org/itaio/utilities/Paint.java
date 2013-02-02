@@ -23,7 +23,8 @@ public class Paint {
 
         final SkillData temp = iTAIO.sd;
         strings.add("iTAIO v" + getVersion() + " - by _phl0w");
-        strings.add("Fishing level: " + Skills.getLevel(Skills.FISHING) + " (+" + temp.level(iTAIO.task.getSkill()) + ")");
+        strings.add("Fishing level: " + Skills.getLevel(Skills.FISHING) + " (+" + temp.level(iTAIO.task.getSkill()) +
+                ")");
         strings.add("Experience gained: " + temp.experience(iTAIO.task.getSkill()));
         strings.add("Experience/hour: " + temp.experience(SkillData.Rate.HOUR, iTAIO.task.getSkill()));
         strings.add("TTL: " + Time.format(temp.timeToLevel(SkillData.Rate.HOUR, iTAIO.task.getSkill())));
