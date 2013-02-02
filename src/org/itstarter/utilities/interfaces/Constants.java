@@ -1,15 +1,15 @@
 package org.itstarter.utilities.interfaces;
 
-public interface Constants {
+public class Constants {
 
-    public int COPPER_ORE = 436;
-    public int TIN_ORE = 438;
+    public static final int COPPER_ORE = 436;
+    public static final int TIN_ORE = 438;
 
-    public int CRAYFISH_SPOT = 6267;
-    public int CRAYFISH = 13435;
+    public static final int CRAYFISH_SPOT = 6267;
+    public static final int CRAYFISH = 13435;
 
-    public int TROUT_SPOT = 328;
-    public int TROUT = 335;
-    public int SALMON = 331;
+    public static final int TROUT_SPOT = 328;
+    public static final int TROUT = 335;
+    public static final int SALMON = 331;
 
 }
