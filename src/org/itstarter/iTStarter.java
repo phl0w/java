@@ -13,7 +13,7 @@ import org.powerbot.game.api.util.SkillData;
 
 import java.awt.*;
 
-@Manifest(authors = {"_phl0w"}, name = "Starter script", description = "start near the lumbridge lodestone")
+@Manifest(authors = {"_phl0w"}, name = "Starter script", description = "start near the lumbridge lodestone", version = 1.01)
 public class iTStarter extends ActiveScript implements PaintListener {
 
     public static final State task = State.FISH_TROUT_AND_SALMON;
