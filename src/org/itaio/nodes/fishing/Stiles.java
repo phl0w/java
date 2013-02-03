@@ -37,7 +37,7 @@ public class Stiles extends Node {
                     }, 2000);
                 }
             } else {
-                if (stiles.interact("Use Raw lobster", "Stiles")) {
+                if (stiles.interact("Use", "Raw lobster -> Stiles")) {
                     Utilities.waitFor(new Condition() {
                         @Override
                         public boolean activate() {
