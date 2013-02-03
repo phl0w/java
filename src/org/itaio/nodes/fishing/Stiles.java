@@ -4,6 +4,7 @@ import org.itaio.utilities.Constants;
 import org.itaio.utilities.Utilities;
 import org.itaio.utilities.interfaces.Condition;
 import org.powerbot.core.script.job.state.Node;
+import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.interactive.NPCs;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.widget.Camera;
@@ -16,7 +17,7 @@ public class Stiles extends Node {
 
     @Override
     public boolean activate() {
-        return (stiles == null ? (stiles = NPCs.getNearest(Constants.STILES)) : stiles) != null && Inventory.isFull();
+        return (stiles == null ? (stiles = NPCs.getNearest(Constants.STILES)) : stiles) != null && Calculations.distanceTo(stiles) < 6 && Inventory.isFull();
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Stiles extends Node {
                     }, 2000);
                 }
             } else {
-                if (stiles.click(true)) {
+                if (stiles.interact("Use Raw lobster", "Stiles")) {
                     Utilities.waitFor(new Condition() {
                         @Override
                         public boolean activate() {
