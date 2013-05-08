@@ -1,12 +1,14 @@
 package org.phl0w.projectdestruction;
 
 import org.phl0w.projectdestruction.bot.Updater;
+import org.phl0w.projectdestruction.bot.interfaces.ClientHook;
 
 import java.applet.Applet;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.jar.JarFile;
 
 public class Main {
@@ -21,10 +23,27 @@ public class Main {
         }
 
         try {
-            final Class<?> clazz = getClassLoader().loadClass("client");
-            clazz.newInstance();
-            //final Class<? extends Applet> appClazz = clazz.asSubclass(Applet.class);
-           // final Applet app = appClazz.newInstance();
+            final Class<?> clazz = getClassLoader().loadClass("ClientHook");
+            final Class<? extends Applet> appClazz = clazz.asSubclass(Applet.class);
+            final Applet app = appClazz.newInstance();
+            app.setVisible(true);
+            app.init();
+            app.start();
+
+            final ClientHook c = (ClientHook) clazz.newInstance();
+
+            while (true) {
+                final Scanner in = new Scanner(System.in);
+                final String nextL = in.nextLine();
+                if (nextL.contains("break")) {
+                    break;
+                } else {
+                    if (nextL.contains("cmd")) {
+                       System.out.println(c.getServer());
+
+                    }
+                }
+            }
         } catch (final ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
