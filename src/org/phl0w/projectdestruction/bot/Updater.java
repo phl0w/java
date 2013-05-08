@@ -68,7 +68,7 @@ public class Updater {
                 System.out.printf("Packing .class file: %s%n", cn.name);
                 final JarEntry entry = new JarEntry(cn.name + ".class");
                 jos.putNextEntry(entry);
-                final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+                final ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
                 cn.accept(cw);
                 jos.write(cw.toByteArray());
             }
