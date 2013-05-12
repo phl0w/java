@@ -1,0 +1,82 @@
+package org.phl0w.itherblore.utilities.enums;
+
+/**
+ * iTHerblore
+ * Potion.java
+ * Purpose: provide an enum containing all potions.
+ *
+ * @author _phl0w
+ * @version 1.0
+ * @since 17/4/2013
+ */
+public enum Potion {
+
+    UNFINISHED_GUAM(227, 249),
+    UNFINISHED_MARRENTILL(227, 251),
+    UNFINISHED_TARROMIN(227, 253),
+    UNFINISHED_HARRALANDER(227, 255),
+    UNFINISHED_RANARR(227, 257),
+    UNFINISHED_SPIRIT_WEED(227, 12224),
+    UNFINISHED_WERGALI(227, 14886),
+    UNFINISHED_IRIT(227, 259),
+    UNFINISHED_AVANTOE(227, 261),
+    UNFINISHED_KWUARM(227, 263),
+    UNFINISHED_SNAPDRAGON(227, 3000),
+    UNFINISHED_CADANTINE(227, 265),
+    UNFINISHED_LANTADYME(227, 2481),
+    UNFINISHED_DWARF_WEED(227, 267),
+    UNFINISHED_TORSTOL(227, 271),
+    UNFINISHED_FELLSTALK(227, 21676),
+    UNFINISHED_TOADFLAX(227, 2998),
+    ATTACK_POTION(91, 221),
+    ANTIPOISON(93, 235),
+    STRENGTH_POTION(95, 225),
+    RESTORE_POTION(97, 223),
+    ENERGY_POTION(97, 1975),
+    DEFENCE_POTION(99, 239),
+    AGILITY_POTION(3002, 2152),
+    COMBAT_POTION(97, 9736),
+    PRAYER_POTION(99, 231),
+    SUPER_ATTACK_POTION(101, 221),
+    SUPER_ANTIPOISON(101, 235),
+    FISHING_POTION(103, 231),
+    SUPER_ENERGY_POTION(103, 2970),
+    HUNTER_POTION(103, 10111),
+    SUPER_STRENGTH_POTION(105, 225),
+    FLETCHING_POTION(14856, 11525),
+    WEAPON_POISON(105, 241),
+    SUPER_RESTORE_POTION(3004, 223),
+    SUPER_DEFENCE(107, 239),
+    ANTIFIRE(2483, 241),
+    RANGING_POTION(109, 245),
+    MAGIC_POTION(2483, 3138),
+    ZAMORAK_BREW(111, 247),
+    SARADOMIN_BREW(3002, 6693),
+    PRAYER_RENEWAL(21628, 21622),
+    SERUM_207(95, 592),
+    SUPER_ANTIFIRE(2454, 4621),
+    EXTREME_ATTACK(145, 261),
+    EXTREME_STRENGTH(157, 267),
+    EXTREME_DEFENCE(163, 2481),
+    EXTREME_RANGING(169, 12539),
+    EXTREME_MAGIC(3042, 9594),
+    OVERLOAD(15309, 15313),
+    RECOVER_SPECIAL(3018, 5972),
+    SUMMONING_POTION(12181, 12109);
+
+    private int primary;
+    private int secondary;
+
+    private Potion(final int primary, final int secondary) {
+        this.primary = primary;
+        this.secondary = secondary;
+    }
+
+    public int getPrimaryId() {
+        return primary;
+    }
+
+    public int getSecondaryId() {
+        return secondary;
+    }
+}
