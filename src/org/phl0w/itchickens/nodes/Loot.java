@@ -7,7 +7,6 @@ import org.powerbot.script.wrappers.GroundItem;
 
 public class Loot extends PriorityNode {
 
-    private MethodContext ctx = null;
     private static final int FEATHER_ID = 337;
 
     public Loot(final MethodContext context) {
@@ -16,22 +15,20 @@ public class Loot extends PriorityNode {
 
     @Override
     public boolean activate() {
-        return ctx != null && !ctx.groundItems.select().id(FEATHER_ID).nearest().isEmpty();
+        return !ctx.groundItems.select().id(FEATHER_ID).isEmpty();
     }
 
     @Override
     public void execute() {
-        for (final GroundItem item : ctx.groundItems.select().id(FEATHER_ID).nearest().first()) {
-            if (item != null) {
-                if (item.isOnScreen()) {
-                    if (item.interact("Take")) {
-                        System.out.println("Took feather");
-                    }
-                } else {
-                    ctx.camera.turnTo(item);
-                    if (!item.isOnScreen()) {
-                        ctx.movement.stepTowards(item);
-                    }
+        for (final GroundItem item : ctx.groundItems.nearest().first()) {
+            if (item.isOnScreen()) {
+                if (item.interact("Take")) {
+                    System.out.println("Took feather");
+                }
+            } else {
+                ctx.camera.turnTo(item);
+                if (!item.isOnScreen()) {
+                    ctx.movement.stepTowards(item);
                 }
             }
         }
