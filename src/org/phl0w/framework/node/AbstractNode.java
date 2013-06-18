@@ -1,6 +1,16 @@
 package org.phl0w.framework.node;
 
-public abstract class AbstractNode {
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.methods.MethodProvider;
+
+public abstract class AbstractNode extends MethodProvider {
+
+    public MethodContext ctx = null;
+
+    public AbstractNode(final MethodContext context) {
+        super(context);
+        this.ctx = context;
+    }
 
     public abstract boolean activate();
 
