@@ -27,7 +27,7 @@ public class PriorityTree extends AbstractTree {
             return 0;
         }
         final int lastIndex = nodes.indexOf(lastNode);
-        if (lastIndex == nodes.size()) {
+        if (lastIndex == nodes.size() - 1) {
             return 0;
         }
         return lastIndex + 1;
