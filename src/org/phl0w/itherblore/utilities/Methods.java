@@ -3,10 +3,8 @@ package org.phl0w.itherblore.utilities;
 import org.phl0w.itherblore.utilities.enums.GrimyHerb;
 import org.phl0w.itherblore.utilities.enums.Potion;
 import org.phl0w.itherblore.utilities.interfaces.Condition;
-import org.phl0w.itherblore.utilities.user.Variables;
-import org.powerbot.core.script.job.Task;
-import org.powerbot.core.script.util.Timer;
-import org.powerbot.game.api.methods.tab.Inventory;
+import org.powerbot.script.util.Delay;
+import org.powerbot.script.util.Timer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,7 +17,7 @@ import java.net.URL;
  * Purpose: provide common methods.
  *
  * @author _phl0w
- * @version 1.1
+ * @version 1.2
  * @since 17/4/2013
  */
 public class Methods {
@@ -34,7 +32,7 @@ public class Methods {
     public static boolean waitFor(final Condition c, final long... timeout) {
         final Timer t = new Timer(timeout.length == 1 ? timeout[0] : 2000);
         while (t.isRunning() && !c.validate()) {
-            Task.sleep(50, 75);
+            Delay.sleep(50, 75);
         }
         return c.validate();
     }
@@ -71,14 +69,6 @@ public class Methods {
         return -1;
     }
 
-    /**
-     * Checks if we need to grab ingredients from the bank.
-     *
-     * @return <tt>true</tt> if we do, <tt>false</tt> if we don't.
-     */
-    public static boolean needIngredients() {
-        return Inventory.getCount(Variables.primary) == 0 || (Variables.secondary != -1 && Inventory.getCount(Variables.secondary) == 0);
-    }
 
     /**
      * Gets the image from the URL provided.

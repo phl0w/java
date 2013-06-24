@@ -1,8 +1,6 @@
 package org.phl0w.itherblore.utilities;
 
 import org.phl0w.itherblore.iTHerblore;
-import org.phl0w.itherblore.utilities.enums.Job;
-import org.phl0w.itherblore.utilities.user.Variables;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,8 +17,11 @@ import java.awt.event.ActionListener;
  */
 public class GUI extends JFrame {
 
-    public GUI() {
+    private iTHerblore script = null;
+
+    public GUI(final iTHerblore herb) {
         super("GUI");
+        script = herb;
         initComponents();
         setLocationRelativeTo(getParent());
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,22 +104,7 @@ public class GUI extends JFrame {
     }
 
     private void startButtonAction() {
-        Variables.current = (MIX_POTIONS_BUTTON.isSelected() ? Job.MIX : Job.CLEAN);
-        iTHerblore.setTree(Variables.current);
-        System.out.println(Variables.current.name());
-        final String selected = (String) itemList.getSelectedItem();
-        switch (Variables.current) {
-            case MIX:
-                final int[] ingredients = Methods.getIngredients(selected);
-                Variables.primary = ingredients[0];
-                Variables.secondary = ingredients[1];
-                System.out.println("prim: " + Variables.primary + ", secon: " + Variables.secondary);
-                break;
-            case CLEAN:
-                Variables.primary = Methods.getHerb(selected);
-                System.out.println("prim: " + Variables.primary);
-                break;
-        }
+        script.setTree(MIX_POTIONS_BUTTON.isSelected(), (String) itemList.getSelectedItem());
         dispose();
         Variables.guiDone = true;
     }

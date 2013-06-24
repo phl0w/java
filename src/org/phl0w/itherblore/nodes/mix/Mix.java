@@ -1,14 +1,13 @@
 package org.phl0w.itherblore.nodes.mix;
 
+import org.phl0w.framework.node.impl.PriorityNode;
+import org.phl0w.framework.node.util.Priority;
 import org.phl0w.itherblore.utilities.Methods;
-import org.phl0w.itherblore.utilities.user.Variables;
-import org.powerbot.core.script.job.state.Node;
-import org.powerbot.game.api.methods.Widgets;
-import org.powerbot.game.api.methods.interactive.Players;
-import org.powerbot.game.api.methods.tab.Inventory;
-import org.powerbot.game.api.methods.widget.Bank;
-import org.powerbot.game.api.wrappers.node.Item;
-import org.powerbot.game.api.wrappers.widget.WidgetChild;
+import org.phl0w.itherblore.utilities.Utilities;
+import org.phl0w.itherblore.utilities.Variables;
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.wrappers.Component;
+import org.powerbot.script.wrappers.Item;
 
 /**
  * iTHerblore 2
@@ -16,31 +15,45 @@ import org.powerbot.game.api.wrappers.widget.WidgetChild;
  * Purpose: a node that handles the mixing of ingredients for us.
  *
  * @author _phl0w
- * @version 1.0
+ * @version 1.1
  * @since 20/04/2013
  */
-public class Mix extends Node {
+public class Mix extends PriorityNode {
+
+    private MethodContext ctx = null;
+    private Utilities utilities = null;
+
+    public Mix(final MethodContext ctx) {
+        super(ctx);
+        this.ctx = ctx;
+        utilities = new Utilities(ctx);
+    }
+
+    @Override
+    public Priority priority() {
+        return Priority.DEFAULT;
+    }
 
     @Override
     public boolean activate() {
-        return !Methods.needIngredients() && !Bank.isOpen() && Players.getLocal().isIdle()
-                && !Widgets.get(1251, 32).validate();
+        return !utilities.needIngredients() && !ctx.bank.isOpen() && !ctx.players.getLocal().isInMotion()
+                && !ctx.widgets.get(1251, 32).isValid();
     }
 
     @Override
     public void execute() {
-        final WidgetChild button = Widgets.get(1370, 38);
-        if (button.validate()) {
+        final Component button = ctx.widgets.get(1370, 38);
+        if (button.isValid()) {
             if (button.click(true)) {
-                Methods.waitFor(Variables.SLEEP_FOR_MAKE_SCREEN);
+                Methods.waitFor(utilities.sleepForMakeScreen);
             }
         } else {
-            final Item primary = Inventory.getItem(Variables.primary);
-            final Item secondary = Inventory.getItem(Variables.secondary);
+            final Item primary = utilities.getItem(Variables.primary);
+            final Item secondary = utilities.getItem(Variables.secondary);
             if (primary != null && secondary != null) {
-                if (primary.getWidgetChild().interact("Use")) {
-                    if (Inventory.getSelectedItem() != null && secondary.getWidgetChild().click(true)) {
-                        Methods.waitFor(Variables.SLEEP_FOR_GUI);
+                if (primary.getComponent().interact("Use")) {
+                    if (ctx.inventory.getSelectedItem() != null && secondary.getComponent().click(true)) {
+                        Methods.waitFor(utilities.sleepForGui);
                     }
                 }
             }

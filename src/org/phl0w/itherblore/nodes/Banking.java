@@ -1,11 +1,10 @@
 package org.phl0w.itherblore.nodes;
 
-import org.phl0w.itherblore.utilities.Methods;
-import org.phl0w.itherblore.utilities.user.Variables;
-import org.powerbot.core.script.job.state.Node;
-import org.powerbot.game.api.methods.Game;
-import org.powerbot.game.api.methods.Widgets;
-import org.powerbot.game.api.methods.widget.Bank;
+import org.phl0w.framework.node.impl.PriorityNode;
+import org.phl0w.framework.node.util.Priority;
+import org.phl0w.itherblore.utilities.Utilities;
+import org.phl0w.itherblore.utilities.Variables;
+import org.powerbot.script.methods.MethodContext;
 
 /**
  * iTHerblore 2
@@ -13,40 +12,52 @@ import org.powerbot.game.api.methods.widget.Bank;
  * Purpose: a node that handles the banking for us.
  *
  * @author _phl0w
- * @version 1.2
+ * @version 1.3
  * @since 18/04/13
  */
-public class Banking extends Node {
+public class Banking extends PriorityNode {
+
+    private MethodContext ctx = null;
+    private Utilities utilities = null;
+
+    public Banking(final MethodContext ctx) {
+        super(ctx);
+        this.ctx = ctx;
+        utilities = new Utilities(ctx);
+    }
 
     @Override
     public boolean activate() {
-        return Methods.needIngredients() && !Widgets.get(1251, 32).validate();
+        return utilities.needIngredients() && !ctx.widgets.get(1251, 32).isValid();
     }
 
     @Override
     public void execute() {
-        if (Bank.open()) {
-            if (Bank.depositInventory()) {
+        if (ctx.bank.open()) {
+            if (ctx.bank.depositInventory()) {
                 final boolean twoItems = Variables.secondary != -1;
                 if (twoItems) {
-                    if (Bank.withdraw(Variables.primary, 14) && Bank.withdraw(Variables.secondary, 0)) {
+                    if (ctx.bank.withdraw(Variables.primary, 14) && ctx.bank.withdraw(Variables.secondary, 0)) {
                         System.out.println("Successfully withdrew primary & secondary ingredient.");
                     } else {
-                        Bank.close();
-                        System.out.println("No resources left, logging.");
-                        Game.logout(true);
+                        ctx.bank.close();
+                        System.out.println("No resources left.");
                     }
                 } else {
-                    if (Bank.withdraw(Variables.primary, 0)) {
+                    if (ctx.bank.withdraw(Variables.primary, 0)) {
                         System.out.println("Successfully withdrew primary ingredient.");
                     } else {
-                        Bank.close();
-                        System.out.println("No resources left, logging.");
-                        Game.logout(true);
+                        ctx.bank.close();
+                        System.out.println("No resources left.");
                     }
                 }
             }
-            Bank.close();
+            ctx.bank.close();
         }
+    }
+
+    @Override
+    public Priority priority() {
+        return Priority.VERY_HIGH;
     }
 }

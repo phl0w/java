@@ -1,15 +1,10 @@
 package org.phl0w.itherblore.nodes;
 
-import org.powerbot.core.script.job.Task;
-import org.powerbot.core.script.job.state.Node;
-import org.powerbot.game.api.methods.Game;
-import org.powerbot.game.api.methods.input.Mouse;
-import org.powerbot.game.api.methods.interactive.Players;
-import org.powerbot.game.api.methods.node.Menu;
-import org.powerbot.game.api.methods.widget.Camera;
-import org.powerbot.game.api.util.Filter;
-import org.powerbot.game.api.util.Random;
-import org.powerbot.game.api.wrappers.interactive.Player;
+import org.phl0w.framework.node.impl.PriorityNode;
+import org.phl0w.framework.node.util.Priority;
+import org.powerbot.script.methods.MethodContext;
+import org.powerbot.script.util.Delay;
+import org.powerbot.script.util.Random;
 
 import java.awt.*;
 
@@ -19,16 +14,21 @@ import java.awt.*;
  * Purpose: a node that handles the antiban for us
  *
  * @author _phl0w
- * @version 1.0
+ * @version 1.1
  * @since 18/04/13
  */
-public class Antiban extends Node {
+public class Antiban extends PriorityNode {
 
-    private Player last = null;
+    private MethodContext ctx = null;
+
+    public Antiban(final MethodContext ctx) {
+        super(ctx);
+        this.ctx = ctx;
+    }
 
     @Override
     public boolean activate() {
-        return Players.getLocal().getAnimation() != -1;
+        return ctx.players.getLocal().getAnimation() != -1;
     }
 
     @Override
@@ -38,27 +38,11 @@ public class Antiban extends Node {
             case 0:
             case 1:
             case 2:
-                Camera.setAngle(Random.nextInt(20, 300));
+                ctx.camera.setAngle(Random.nextInt(20, 300));
                 break;
             case 3:
             case 4:
-                Camera.setPitch(Random.nextInt(0, 100));
-                break;
-            case 5:
-                final Player pl = Players.getNearest(new Filter<Player>() {
-                    @Override
-                    public boolean accept(Player p) {
-                        return !p.equals(Players.getLocal()) && (last == null || !last.equals(p));
-                    }
-                });
-                if (pl != null) {
-                    if (!pl.isOnScreen()) {
-                        Camera.turnTo(pl);
-                    }
-                    pl.click(false);
-                    doMouseStuff();
-                    last = pl;
-                }
+                ctx.camera.setPitch(Random.nextInt(0, 100));
                 break;
             case 6:
                 doMouseStuff();
@@ -66,21 +50,26 @@ public class Antiban extends Node {
             case 7:
             case 8:
             case 9:
-                final Point p = Mouse.getLocation();
-                Mouse.move(new Point(Random.nextInt(-50, 50) + p.x, Random.nextInt(-50, 50) + p.y));
+                final Point p = ctx.mouse.getLocation();
+                ctx.mouse.move(new Point(Random.nextInt(-50, 50) + p.x, Random.nextInt(-50, 50) + p.y));
                 break;
         }
-        Task.sleep(1000);
+        Delay.sleep(1000);
+    }
+
+    @Override
+    public Priority priority() {
+        return Priority.LOW;
     }
 
     private void doMouseStuff() {
         final boolean r = Random.nextBoolean();
-        if (r && Menu.isOpen()) {
-            Menu.select("Cancel");
+        if (r && ctx.menu.isOpen()) {
+            ctx.menu.click("Cancel");
         } else {
-            final double height = Game.getDimensions().getHeight();
-            final double width = Game.getDimensions().getWidth();
-            Mouse.move(new Point(Random.nextInt(0, (int) height), Random.nextInt(0, (int) width)));
+            final double height = ctx.game.getDimensions().getHeight();
+            final double width = ctx.game.getDimensions().getWidth();
+            ctx.mouse.move(new Point(Random.nextInt(0, (int) height), Random.nextInt(0, (int) width)));
         }
     }
 }
