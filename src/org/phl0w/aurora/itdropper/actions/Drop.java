@@ -14,6 +14,7 @@ public class Drop extends Action {
 
     @Override
     public int execute() {
+        iTDropper.log.info("execute");
         for (final WidgetItem i : Inventory.getAll()) {
             if (i.applyAction("Drop")) {
                 iTDropper.log.info("Successfully dropped (amount * id): " + i.getStackSize() + " * " + i.getId() + ".");
