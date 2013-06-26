@@ -1,9 +1,6 @@
 package org.phl0w.aurora.itmaples.actions;
 
-import ms.aurora.api.methods.Camera;
-import ms.aurora.api.methods.Objects;
-import ms.aurora.api.methods.Players;
-import ms.aurora.api.methods.Walking;
+import ms.aurora.api.methods.*;
 import ms.aurora.api.methods.tabs.Inventory;
 import ms.aurora.api.script.Action;
 import ms.aurora.api.util.Predicate;
@@ -16,12 +13,10 @@ import org.phl0w.aurora.itmaples.utilities.Variables;
 
 public class Chop extends Action {
 
-    private static final int MAPLE_TREE_ID = 2782;
-
     private static final Predicate<GameObject> TREE_PREDICATE = new Predicate<GameObject>() {
         @Override
         public boolean apply(final GameObject obj) {
-            return obj.getId() == MAPLE_TREE_ID;
+            return obj.getId() == 2782 && Npcs.find().location(obj.getLocation()).result().length == 0;
         }
     };
 
@@ -60,7 +55,7 @@ public class Chop extends Action {
             } else {
                 Variables.status = "Turning cam";
                 Camera.turnTo(g);
-                if (!g.isOnScreen()) {
+                if (!g.isOnScreen() && Calculations.distance(Players.getLocal().getLocation(), MAPLE_TREE_TILE) >= 5) {
                     Variables.status = "Walking tree";
                     Walking.walkTo(MAPLE_TREE_TILE);
                     Utilities.sleepNoException(500, 700);
